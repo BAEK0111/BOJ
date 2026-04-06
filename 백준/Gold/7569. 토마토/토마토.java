@@ -4,7 +4,6 @@ import java.io.*;
 public class Main {
     static int M, N, H;
     static int[][][] map;
-    static boolean[][][] visited;
     static int[] dz = {-1,1,0,0,0,0};
     static int[] dy = {0,0,-1,1,0,0};
     static int[] dx = {0,0,0,0,-1,1};
@@ -17,7 +16,6 @@ public class Main {
         N = Integer.parseInt(st.nextToken());
         H = Integer.parseInt(st.nextToken());
         map = new int[H][N][M];
-        visited = new boolean[H][N][M];
 
         Queue<int[]> q = new LinkedList<>();
 
@@ -70,9 +68,8 @@ public class Main {
                 int ny = nowY + dy[i];
                 int nx = nowX + dx[i];
                 if(nx >= 0 && ny >= 0 && nz >= 0 && nx < M && ny < N && nz < H) {
-                    if(map[nz][ny][nx] == 0 && !visited[nz][ny][nx]) {
+                    if(map[nz][ny][nx] == 0) {
                         map[nz][ny][nx] = map[nowZ][nowY][nowX] + 1;
-                        visited[nz][ny][nx] = true;
                         q.offer(new int[]{nz, ny, nx});
                     }
                 }
