@@ -39,4 +39,34 @@ def solution(signals):
             return time
         if time == lcm_val:
             return -1
+
+import math
+
+def lcm(signals):
+    lcm = 1
+    for g, y, r in signals:
+        cycle = g + y + r
+        lcm = (lcm * cycle) // math.gcd(lcm, cycle)
+    return lcm
+
+def solution(signals):
+    
+    lcm_value = lcm(signals)
+    
+    for t in range(1, lcm_value + 1):
+        is_all_yellow = True
+        
+        for g, y, r in signals:
+            cycle_len = g + y + r
+            current = t % cycle_len
+            
+            if not (g < current <= g + y):
+                is_all_yellow = False
+                break
+                
+        
+        if is_all_yellow:
+            return t
+        
+    return -1
                 
