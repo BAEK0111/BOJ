@@ -1,12 +1,13 @@
+import math
+
 def solution(progresses, speeds):
     days = [100-p for p in progresses]
     for i in range(len(speeds)):
-        days[i] = days[i] // speeds[i] if days[i] % speeds[i] == 0 else days[i] // speeds[i] + 1
+        days[i] = math.ceil(days[i] / speeds[i])
         
     work = []
     answer = []
     
-    print(days)
     for d in days:
         cnt = 1
         if not work:
