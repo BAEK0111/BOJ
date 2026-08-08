@@ -6,12 +6,11 @@ def solution(priorities, location):
     
     answer = []
     while dq:
-        priority = sorted(dq, key = lambda x: -x[1])[0][1]
-        if dq[0][1] != priority:
-            dq.rotate(-1)
+        cur = dq.popleft()
+        if any(cur[1] < q[1] for q in dq):
+            dq.append(cur)
         else:
-            answer.append(dq[0][0])
-            dq.popleft()
+            answer.append(cur[0])
         
     
     return answer.index(location) + 1
