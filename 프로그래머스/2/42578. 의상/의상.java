@@ -1,22 +1,21 @@
+import java.util.Map;
 import java.util.HashMap;
 
 class Solution {
     public int solution(String[][] clothes) {
-        HashMap<String, Integer> map = new HashMap();
-        for(int i = 0; i < clothes.length; i++) {
-            String type = clothes[i][1];
-            if (!map.containsKey(type)) {
-                map.put(type, 2);
-            } else {
-                map.put(type, map.get(type) + 1);
-            }
+        int answer = 1;
+        HashMap<String, Integer> map = new HashMap<>();
+        
+        for(String[] cloth: clothes) {
+            map.put(cloth[1], map.getOrDefault(cloth[1] ,0) + 1);
+        }
+
+    
+        for(Map.Entry<String, Integer> entry: map.entrySet()) {
+            answer *= (entry.getValue() + 1);
         }
         
-        int result = 1;
-        for (int value : map.values()) {
-           result *= value;
-        }
         
-        return result - 1;
+        return answer - 1;
     }
 }
