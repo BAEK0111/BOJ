@@ -5,7 +5,7 @@ class Solution {
     private static int[] dx = {0, -1, 0, 1};
     private static boolean visited[][];
     
-    private static void bfs(int sy, int sx, int[][] maps, boolean[][] visited) {
+    private static void bfs(int sy, int sx, int[][] maps) {
         Queue<int[]> q = new ArrayDeque<>();
         q.offer(new int[]{sy, sx});
         visited[sy][sx] = true;
@@ -33,7 +33,7 @@ class Solution {
         
         visited = new boolean[y][x];
         
-        bfs(0, 0, maps, visited);
+        bfs(0, 0, maps);
         return visited[y-1][x-1] ? maps[y-1][x-1] : -1;
     }
 }
