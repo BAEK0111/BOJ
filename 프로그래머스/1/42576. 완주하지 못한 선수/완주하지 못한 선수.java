@@ -1,26 +1,24 @@
-import java.util.Map;
 import java.util.HashMap;
+import java.util.Map;
 
 class Solution {
     public String solution(String[] participant, String[] completion) {
-        Map<String, Integer> map = new HashMap<>();
-        for(int i = 0; i < participant.length; i++) {
-            if(!map.containsKey(participant[i])) {
-                map.put(participant[i], 1);
-            } else {
-                map.put(participant[i], map.get(participant[i]) + 1);
+        HashMap<String, Integer> map = new HashMap<>();
+        
+        for(String p: participant) {
+            map.put(p, map.getOrDefault(p, 0) + 1);
+        }
+        
+        for(String c: completion) {
+            map.put(c, map.get(c) - 1);
+        }
+        
+        for(Map.Entry<String, Integer> entry: map.entrySet()) {
+            if(entry.getValue() == 1) {
+                return entry.getKey();
             }
         }
         
-        for(int i = 0; i < completion.length; i++) {
-            map.put(completion[i], map.get(completion[i]) - 1);
-        }
-        
-        for(int i = 0; i < participant.length; i++) {
-            if (map.get(participant[i]) == 1) {
-                return participant[i];
-            }
-        }
-        return "wrong";
+        return "";
     }
 }
