@@ -43,5 +43,5 @@ for test_case in range(1, T + 1):
     A, B = map(int, input().split())
     res1 = (A+B) // 2
     res2 = A - res1
-    print(res1, res2)
+    print(f"{res1} {res2}")
     # ///////////////////////////////////////////////////////////////////////////////////
